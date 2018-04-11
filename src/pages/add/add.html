@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center">ADD</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Name: </ion-label>
+    <ion-input type="text" [(ngModel)]="item.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Expiry Date: </ion-label>
+    <ion-datetime displayFormat="DD-MMM-YYYY" [min]="minDate" [max]="maxDate" [(ngModel)]="item.expiryDate"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Notification Reminder: </ion-label>
+    <ion-select [(ngModel)]="item.reminder">
+      <ion-option value="1">1 day before</ion-option>
+      <ion-option value="3">3 day before</ion-option>
+      <ion-option value="5">5 day before</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Picture: </ion-label>
+    <!-- <ion-input type="text" [(ngModel)]="picture"></ion-input> -->
+    <ion-img style="width: 80px; height: 80px;" [src]="imageURL"></ion-img>
+    <button ion-button icon-only item-end color="light" (click)="accessGallery()">
+      <ion-icon name="md-add" color="dark"></ion-icon>
+    </button>
+    <button ion-button icon-only item-end color="light" (click)="takePhoto()">
+      <ion-icon name="ios-camera" color="dark"></ion-icon>
+    </button>
+  </ion-item>
+
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button (click)="addItem(item.name, item.expiryDate, item.reminder)" small>Add Item</button>
+      <button ion-button color="danger" small (click)="back()">Cancel</button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
